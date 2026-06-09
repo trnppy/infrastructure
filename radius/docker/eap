@@ -1,0 +1,46 @@
+eap {
+
+	default_eap_type = tls
+	ignore_unknown_eap_types = yes
+	cisco_accounting_username_bug = no
+	check_cert_cn = no
+	use_tunneled_reply = yes
+	timer_expire = 60
+
+	tls-config tls-common {
+
+		ca_path = ${cadir}
+		ca_file = ${cadir}/$ENV{CA_CERT}
+
+		private_key_file = ${certdir}/$ENV{PRIVATE_KEY}
+		certificate_file = ${certdir}/$ENV{PRIVATE_CERT}
+		require_client_cert = yes
+
+		# Enhanced cipher selection for optimal compatibility with ESP32-C6 hardware accelerators
+		cipher_list = "DEFAULT:!aNULL:!eNULL:!LOW:!EXPORT:!MD5:!SHA:!RC4"
+		cipher_server_preference = yes
+
+		disable_tlsv1_1 = yes
+		disable_tlsv1 = yes
+
+		tls_min_version = "1.2"
+		tls_max_version = "1.2"
+		ecdh_curve = "prime256v1"
+		fragment_size = 1024
+		include_length = yes
+		random_file = /dev/random
+		check_crl = no
+		enable_set_sid = no
+
+		cache {
+			enable = yes
+			lifetime = 24 # hours
+			max_entries = 255
+		}
+	}
+
+	tls {
+		tls = tls-common
+	}
+
+}

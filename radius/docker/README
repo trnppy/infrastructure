@@ -1,0 +1,26 @@
+
+# create these files
+ca-key.pem  ca.pem  dev13-bundle.pem  dev13-dhparam.pem  dev13-key.pem  dev13.pem
+
+# setup persistent storage for radius docker container 
+mkdir -p ~/storage/radius/pki
+chmod 755 ~/storage/radius/pki
+
+# copy the pem files above to ~/storage/radius/pki
+
+# open permissions on dev13-key.pem otherwise not accessible within container and will fail to start 
+chmod 644 ~/storage/radius/pki/dev13-key.pem
+
+# update Dockerfile2 as necessary
+
+# update build2 as necessary
+
+# execute build2 to create the radius image
+bash build2
+
+# run docker container, exposing udp port 8812 for clients; update radius image name as required
+sudo docker run -d --name radius-eap-tls -v ~/storage/radius/pki:/etc/raddb/certs -p 8812:1812/udp -e CLIENT_SECRET=xxxxx -e CLIENT_ADDRESS=0.0.0.0 --restart=always radius-eap-tls:1
+
+# watch log
+sudo docker logs radius-eap-tls --follow
+

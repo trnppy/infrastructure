@@ -1,0 +1,10 @@
+
+../cfssl_1.6.5_linux_amd64 gencert -ca=../ca/ca.pem -ca-key=../ca/ca-key.pem -config=../ca/ca-config.json -profile=combination -hostname="dev13.local" dev13-csr.json | ../cfssljson_1.6.5_linux_amd64 -bare dev13
+
+exit
+
+openssl x509 -text -noout -in <file>
+openssl x509 -enddate -noout -in <file>
+
+../cfssl_1.6.5_linux_amd64 certinfo -cert ./dev13.pem
+

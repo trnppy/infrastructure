@@ -1,0 +1,17 @@
+#
+# !! Use at your own risk !!
+#
+# Common infra on my local area network
+#
+
+gl.inet gl-b1300 802.11b/g/n
+openwrt 24.10.5 with wpad-openssl
+
+lattepanda sigma
+ubuntu 24.04
+arduino-cli 1.5.0
+cfssl 1.6.5
+docker 29.3.1
+freeradius 3.0.27
+mosquitto 2.0.22
+

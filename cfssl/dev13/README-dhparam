@@ -1,0 +1,4 @@
+
+[[ -f dev13-dhparam.pem ]] && exit
+openssl dhparam -out dev13-dhparam.pem 2048
+

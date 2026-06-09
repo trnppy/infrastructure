@@ -1,0 +1,3 @@
+
+cat dev13.pem ../ca/ca.pem > dev13-bundle.pem
+

@@ -1,0 +1,4 @@
+
+[[ -f esp32c6-dhparam.pem ]] && exit
+openssl dhparam -out esp32c6-dhparam.pem 2048
+

@@ -1,0 +1,6 @@
+
+sudo docker stop radius-eap-tls
+sudo docker rm radius-eap-tls
+sudo docker rmi radius-eap-tls:1
+sudo docker build -t radius-eap-tls:1 -f Dockerfile2 .
+

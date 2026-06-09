@@ -1,0 +1,18 @@
+{
+  "hosts": [
+    "dev13.local",
+    "dev13"
+  ],
+  "CN": "dev13.local",
+  "key": {
+    "algo": "ecdsa",
+    "size": 256
+  },
+  "names": [{
+      "OU": "dev",
+      "O": "trnppy co.",
+      "L": "city",
+      "S": "state",
+      "C": "US"
+  }]
+} 

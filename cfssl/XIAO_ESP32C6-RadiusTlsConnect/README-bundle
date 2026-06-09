@@ -1,0 +1,3 @@
+
+cat esp32c6.pem ../ca/ca.pem > esp32c6-bundle.pem
+

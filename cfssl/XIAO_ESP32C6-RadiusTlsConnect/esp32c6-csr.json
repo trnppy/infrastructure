@@ -1,0 +1,14 @@
+{
+  "CN": "XIAO_ESP32C6-RadiusTlsConnect",
+  "key": {
+    "algo": "ecdsa",
+    "size": 256
+  },
+  "names": [{
+      "OU": "dev",
+      "O": "trnppy co.",
+      "L": "city",
+      "S": "state",
+      "C": "US"
+  }]
+} 
