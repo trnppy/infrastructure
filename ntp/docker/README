@@ -1,0 +1,16 @@
+
+# update build as necessary
+
+# execute build
+bash build
+
+# run docker container
+docker run -d \
+  --name ntp \
+  --restart unless-stopped \
+  -p 10.0.0.10:123:123/udp \
+  cturra/ntp
+
+# watch log
+docker logs ntp --follow
+

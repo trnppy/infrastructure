@@ -1,0 +1,7 @@
+
+docker stop dhcpd
+docker rm dhcpd
+docker rmi networkboot/dhcpd:latest
+
+docker pull networkboot/dhcpd
+

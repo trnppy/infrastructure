@@ -1,0 +1,7 @@
+
+docker stop coredns
+docker rm coredns
+docker rmi coredns/coredns:latest
+
+docker pull coredns/coredns
+

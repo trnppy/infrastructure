@@ -1,0 +1,35 @@
+
+10.0.0.10 is the second nic on a raspberrypi that serves to a bridged network these services:
+dhcpd
+dns
+ntp
+
+#
+
+$ dig @10.0.0.10 dev99.local.home
+
+; <<>> DiG 9.18.28-0ubuntu0.22.04.1-Ubuntu <<>> @10.0.0.10 dev99.local.home
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 49472
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: a56157d252612876 (echoed)
+;; QUESTION SECTION:
+;dev99.local.home.		IN	A
+
+;; ANSWER SECTION:
+dev99.local.home.	3600	IN	A	10.0.0.10
+
+;; AUTHORITY SECTION:
+local.home.		3600	IN	NS	dev99.local.home.
+
+;; Query time: 0 msec
+;; SERVER: 10.0.0.10#53(10.0.0.10) (UDP)
+;; WHEN: Sat Aug 24 17:43:26 EDT 2024
+;; MSG SIZE  rcvd: 129
+

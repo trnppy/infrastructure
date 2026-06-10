@@ -1,0 +1,23 @@
+
+# setup persistent storage for coredns docker container 
+mkdir -p ~/storage
+[[ ! -e ~/storage/coredns ]] && cp -rp ./storage/coredns ~/storage/
+
+# update build as necessary
+
+# execute build
+bash build
+
+# run docker container
+docker run -d \
+  --name coredns \
+  --restart unless-stopped \
+  -p 10.0.0.10:53:53/udp \
+  -p 10.0.0.10:53:53/tcp \
+  -v ~/storage/coredns/Corefile:/Corefile \
+  -v ~/storage/coredns/zones:/etc/coredns/zones \
+  coredns/coredns:latest -conf /Corefile
+
+# watch log
+docker logs coredns --follow
+

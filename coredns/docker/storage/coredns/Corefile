@@ -1,0 +1,18 @@
+.:53 {
+    forward . 8.8.8.8 8.8.4.4
+    cache 30
+    errors
+    log
+}
+
+local.home:53 {
+    file /etc/coredns/zones/local.home.db
+    errors
+    log
+}
+
+0.0.10.in-addr.arpa:53 {
+    file /etc/coredns/zones/10.0.0.db
+    errors
+    log
+}

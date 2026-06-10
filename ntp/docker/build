@@ -1,0 +1,7 @@
+
+docker stop ntp
+docker rm ntp
+docker rmi cturra/ntp:latest
+
+docker pull cturra/ntp:latest
+

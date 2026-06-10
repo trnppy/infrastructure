@@ -1,0 +1,12 @@
+$ORIGIN local.home.
+@       3600 IN SOA dev99.local.home. admin.local.home. (
+                                2023051001 ; serial
+                                7200       ; refresh (2 hours)
+                                3600       ; retry (1 hour)
+                                1209600    ; expire (2 weeks)
+                                3600       ; minimum (1 hour)
+                                )
+
+        3600 IN NS dev99.local.home.
+
+dev99   IN A 10.0.0.10

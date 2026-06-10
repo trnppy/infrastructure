@@ -1,0 +1,20 @@
+
+# setup persistent storage for dhcpd docker container 
+mkdir -p ~/storage
+[[ ! -e ~/storage/dhcpd ]] && cp -rp ./storage/dhcpd ~/storage/
+
+# update build as necessary
+
+# execute build
+bash build
+
+# run docker container (update interface as necessary)
+docker run -d \
+  --name dhcpd \
+  -v ~/storage/dhcpd/data:/data \
+  --init --net=host \
+  networkboot/dhcpd enp2s0
+
+# watch log
+docker logs dhcpd --follow
+
