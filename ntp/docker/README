@@ -14,3 +14,27 @@ docker run -d \
 # watch log
 docker logs ntp --follow
 
+# chronyc clients
+docker exec -ti ntp sh
+/ # chronyc clients
+Hostname                      NTP   Drop Int IntL Last     Cmd   Drop Int  Last
+===============================================================================
+10.0.0.100                      5      0   6   -     8       0      0   -     -
+10.0.0.10                       2      0   1   -   235       0      0   -     -
+
+# chronyc tracking
+docker exec -ti ntp chronyc tracking
+Reference ID    : A29FC801 (time.cloudflare.com)
+Stratum         : 4
+Ref time (UTC)  : Sun Aug 25 23:42:07 2024
+System time     : 0.001700340 seconds slow of NTP time
+Last offset     : -0.000085354 seconds
+RMS offset      : 0.000801075 seconds
+Frequency       : 1.315 ppm slow
+Residual freq   : -0.010 ppm
+Skew            : 1.735 ppm
+Root delay      : 0.014725525 seconds
+Root dispersion : 0.004448090 seconds
+Update interval : 259.3 seconds
+Leap status     : Normal
+

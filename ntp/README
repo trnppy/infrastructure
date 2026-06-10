@@ -1,4 +1,7 @@
 
+# https://chrony-project.org/doc/4.1/chronyd.html
+# https://hub.docker.com/r/cturra/ntp
+
 10.0.0.10 is the second nic on a raspberrypi that serves to a bridged network these services:
 dhcpd
 dns
