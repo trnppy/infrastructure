@@ -1,0 +1,3 @@
+
+cat mkrvidor4000.pem ../ca/ca.pem > mkrvidor4000-bundle.pem
+

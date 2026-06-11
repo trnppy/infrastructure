@@ -1,0 +1,4 @@
+
+[[ -f mkrvidor4000-dhparam.pem ]] && exit
+openssl dhparam -out mkrvidor4000-dhparam.pem 2048
+
