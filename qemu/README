@@ -1,0 +1,88 @@
+//
+// QEMU
+//
+
+Virtualization and Emulator
+https://www.qemu.org/
+
+LattePanda Sigma
+Ubuntu 24.04.4 LTS
+
+sudo apt install cpu-checker
+
+kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst
+sudo systemctl enable --now libvirtd
+sudo systemctl status libvirtd
+
+sudo brctl show
+bridge name	bridge id		STP enabled	interfaces
+docker0		8000.f2bdb5c6db17	no		veth569dc56
+							veth8ac5a47
+							vetha440a08
+
+sudo virsh net-list --all
+Name                 State      Autostart     Persistent
+----------------------------------------------------------
+default              inactive   no            yes
+
+sudo virsh net-start --network default
+Network default started
+
+sudo virsh net-autostart --network default
+Network default marked as autostarted
+
+sudo virsh net-list --all
+Name                 State      Autostart     Persistent
+----------------------------------------------------------
+default              active     yes           yes
+
+sudo brctl show
+bridge name	bridge id		STP enabled	interfaces
+docker0		8000.f2bdb5c6db17	no		veth569dc56
+							veth8ac5a47
+							vetha440a08
+virbr0		8000.5254009fbe9d	yes	
+
+sudo mkdir -p /etc/qemu
+sudo echo 'allow virbr0' > /etc/qemu/bridge.conf
+
+#
+
+http://cdimage.ubuntu.com/ubuntu/releases/26.04/release/
+unxz ubuntu-26.04-preinstalled-server-amd64.img.xz
+
+sudo losetup -P -f --show ubuntu-26.04-preinstalled-server-amd64.img
+lsblk /dev/loop0
+sudo mount /dev/loop0p1 /mnt/isoimage
+cd /mnt/isoimage/boot
+sudo cp vmlinuz /tmp/
+sudo cp initrd.img /tmp/
+sudo umount /mnt/isoimage
+sudo losetup -d /dev/loop0
+
+# create a VM called dev100 running ubuntu 26.04
+
+qemu-img create -f qcow2 /home/devops/work/boot/dev100.img 80G
+
+qemu-system-x86_64 \
+  -boot d \
+  -cdrom /mnt/data/vm/images/ubuntu-26.04-preinstalled-server-amd64.img \
+  -enable-kvm \
+  -cpu host \
+  -nographic \
+  -m 1024 \
+  -netdev bridge,id=hn0,br=virbr0 \
+  -device virtio-net-pci,netdev=hn0,id=nic1 \
+  -hda /mnt/data/vm/boot/dev100.img \
+  -kernel /home/devops/work/ubuntu-18.04.6/server/vmlinuz \
+  -initrd /home/devops/work/ubuntu-18.04.6/server/initrd.gz \
+  -append "console=ttyS0 boot=casper autoinstall auto=true apt-setup/proposed=true nomodeset fb=false priority=critical locale=en_US url=http://192.168.5.76:9080/ubuntu/dev100/dev100.cfg" \
+  -no-reboot
+
+
+
+

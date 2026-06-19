@@ -1,0 +1,4 @@
+
+[[ -f esp32_c6_lcd-dhparam.pem ]] && exit
+openssl dhparam -out esp32_c6_lcd-dhparam.pem 2048
+

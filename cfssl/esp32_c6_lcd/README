@@ -1,0 +1,8 @@
+
+../cfssl_1.6.5_linux_amd64 gencert -ca=../ca/ca.pem -ca-key=../ca/ca-key.pem -config=../ca/ca-config.json -profile=combination esp32_c6_lcd-csr.json | ../cfssljson_1.6.5_linux_amd64 -bare esp32_c6_lcd
+
+exit
+
+openssl x509 -text -noout -in <file>
+openssl x509 -enddate -noout -in <file>
+
