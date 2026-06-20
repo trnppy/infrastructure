@@ -66,9 +66,8 @@ VG        #PV #LV #SN Attr   VSize    VFree
 
 # ubuntu 26.04
 
-http://cdimage.ubuntu.com/ubuntu/releases/26.04/release/
-download and uncompress in /mnt/data/vm/images
-unxz ubuntu-26.04-preinstalled-server-amd64.img.xz
+https://ubuntu.com/download/server
+download as /mnt/data/vm/images/ubuntu-26.04-live-server-amd64.iso
 
 create /mnt/isoimage
 
