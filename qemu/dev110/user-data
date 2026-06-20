@@ -1,0 +1,56 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  refresh-installer:
+    update: no
+  keyboard:
+    layout: us
+  network:
+    ethernets:
+      any:
+        match:
+          name: en*
+        dhcp4: true
+    version: 2
+  storage:
+    version: 1
+    layout:
+      name: lvm
+    swap:
+      size: 0
+  ssh:
+    install-server: true
+    allow-pw: true
+  disable_root: false
+  user-data:
+    hostname: dev110
+    disable_root: false 
+    users:
+      - name: devops
+        shell: /bin/bash
+        lock-passwd: false
+        passwd:
+  packages:
+    - ca-certificates
+    - curl
+    - dnsmasq
+    - git
+    - hostapd
+    - lsof
+    - network-manager
+    - openssl
+    - open-vm-tools
+    - python3
+    - python3-pip
+    - python3-virtualenv
+    - rsync
+    - socat
+    - strace
+    - tcpdump
+    - unzip
+    - wget
+    - zip
+  late-commands:
+    - echo "devops ALL=(ALL:ALL) NOPASSWD:ALL" > /target/etc/sudoers.d/devops
+
