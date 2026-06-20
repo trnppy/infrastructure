@@ -89,7 +89,11 @@ sudo qemu-img create -f qcow2 /mnt/data/vm/boot/dev110.img 120G
 as per middleware repo - nginx/qemu-9080/
 copy dev110/ to ~/storage/qemu-9080/htdocs/ubuntu/
 update passwd and packages in ~/storage/qemu-9080/htdocs/ubuntu/dev110/user-data
-create password hash with: openssl passwd -6
+
+create password hash with:
+openssl passwd -6
+or
+openssl passwd -1 -stdin
 
 sudo qemu-system-x86_64 \
   -boot d \
